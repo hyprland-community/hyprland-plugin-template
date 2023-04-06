@@ -1,0 +1,10 @@
+[example]
+description = "Example plugin"
+version = "1.0.0"
+author = "YOU"
+
+[example.build]
+output = "example.so"
+steps = [
+    "make all",
+]

@@ -87,7 +87,7 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE handle) {
 
     HyprlandAPI::reloadConfig();
 
-    return {"ExamplePlugin", "An example plugin", "Vaxry", "1.0"};
+    return {"example", "An example plugin", "YOU", "1.0"};
 }
 
 APICALL EXPORT void PLUGIN_EXIT() {
