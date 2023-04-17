@@ -26,6 +26,7 @@ OBJECT_DIR=obj
 
 # Compiler flags
 COMPILE_FLAGS=-g -fPIC --no-gnu-unique -std=c++23
+COMPILE_FLAGS+=-fdiagnostics-color=always
 COMPILE_FLAGS+=-I "/usr/include/pixman-1"
 COMPILE_FLAGS+=-I "/usr/include/libdrm"
 COMPILE_FLAGS+=-I "${HYPRLAND_HEADERS}"
