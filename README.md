@@ -1,4 +1,6 @@
 # Hyprland Plugin Template
+# WARNING: Due to changes in the way Hyprland distributes headers, this is broken right now.
+
 The goal of this repository is to create a robust `Hyprland` plugin template, with
 - A working, extensible `Makefile`
 - [`hyprload`](https://github.com/Duckonaut/hyprload) support out of the box
