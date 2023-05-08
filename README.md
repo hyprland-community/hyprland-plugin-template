@@ -1,5 +1,4 @@
 # Hyprland Plugin Template
-# WARNING: Due to changes in the way Hyprland distributes headers, this is broken right now.
 
 The goal of this repository is to create a robust `Hyprland` plugin template, with
 - A working, extensible `Makefile`
@@ -31,26 +30,22 @@ which is a bit more granular.
 > like `cannot cast from type 'void (CCompositor::*)(CWindow *, wlr_surface *)' to pointer type 'void *'`
 > This won't happen when building with GCC and can be ignored.
 
-#### HYPRLAND_HEADERS
-The most important part of setting up plugin builds is the `HYPRLAND_HEADERS` variable.
+#### Hyprland headers
+The most important part of setting up plugin builds is getting access to Hyprland headers
 Plugins can hook directly into Hyprland's C++ code, which is what makes them so powerful.
-Because of that, they need to be able to *see* the Hyprland source. `HYPRLAND_HEADERS` ensures
-that.
+Because of that, they need to be able to *see* the Hyprland source.
 
-When building your own plugins for testing, you will need to manually define it using
-`export HYPRLAND_HEADERS=(PATH_TO_HYPRLAND_SOURCE_ROOT)` before running `make` commands. You
-can use a local path if you keep `Hyprland` source anyway, but I'd definitely recommend using
-`hyprload`. If you use your local source different from the `hyprload` one, make sure to
-run `make pluginenv` in the Hyprland folder.
+When building your own plugins for testing, make sure you have the pkg-config path set up correctly
+and that your installation of Hyprland has the headers in `/usr/local/include/hyprland`. This
+requires running `make pluginenv`.
 
 #### Hyprload, and why it's useful for plugin development
-If you use `hyprload`, handing `HYPRLOAD_HEADERS` becomes a bit easier and more reliable.
+If you use `hyprload`, it makes sure that the pkg-config path and headers are always available.
 By design it keeps a copy of Hyprland source code up to date with the Hyprland version you're
-running in `$HOME/.local/share/hyprload/hyprland`, and you can use that as your
-`HYPRLAND_HEADERS` path.
+running in `$HOME/.local/share/hyprload/hyprland`, and builds pluginenv whenever needed.
 
-When users install your plugin via `hyprload`, it will automatically define `HYPRLAND_HEADERS`
-to that path to ensure maximum compatibility.
+When users install your plugin via `hyprload`, it will also automatically set up everything
+to ensure maximum compatibility.
 
 When developing plugins and frequently changing them, the `make install` command will
 automatically place your plugin build in the directory `hyprload` automatically loads. You can
@@ -69,9 +64,7 @@ changing (I would like to streamline it somehow, but it's manageable for now)
   For more info, see [hyprload docs](https://github.com/Duckonaut/hyprload#format)
 
 ## Building and testing
-After making sure you have defined `HYPRLAND_HEADERS` (you might need to do this *every time
-you open a new terminal* if you don't put it in your `.bashrc` or `.zshrc` or whatever), the
-steps to build are simple
+After having the headers available, the steps to build are simple
 
 ### Manually
 - `make`: This will build the `PLUGIN_NAME.so` file.
